@@ -1,3 +1,4 @@
+import "dotenv/config"
 import "reflect-metadata";
 // import {createConnection} from "typeorm";
 // import {User} from "./entity/User";
@@ -12,6 +13,8 @@ import { createConnection } from "typeorm";
 
   const app = express();
   app.get('/', (_req, res) => res.send('I am from express server'))
+
+  
 
   await  createConnection()
 
