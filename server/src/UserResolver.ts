@@ -1,8 +1,8 @@
 import { Resolver, Query, Mutation, Arg, ObjectType, Field, Ctx } from 'type-graphql'
 import { hash, compare } from 'bcryptjs'
-import { sign } from 'jsonwebtoken'
 import { User } from './entity/User'
 import { MyContext } from './MyContext'
+import { createRefreshToken, createAccessToken } from './auth'
 
 @ObjectType()
 class LoginResponse {
@@ -55,13 +55,7 @@ export class UserResolver {
      * Refresh token
      */
     res.cookie(
-      "aiam",
-      sign({
-        userId: user.id, 
-      }, 'asdasdasdsdsd', {
-        expiresIn: '30d'
-      }),
-      {
+      "aiam", createRefreshToken(user),{
         httpOnly: true,
       }
     )
@@ -69,11 +63,7 @@ export class UserResolver {
      * Create token
      */
     return {
-      accessToken: sign({
-        userId: user.id, 
-      }, 'asdasdasd', {
-        expiresIn: '15m'
-      })
+      accessToken: createAccessToken(user)
     }
   }
 }
