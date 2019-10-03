@@ -10,8 +10,6 @@ export const createAccessToken = (user: User) => {
   })
 }
 
-console.log()
-  console.log()
 export const createRefreshToken = (user: User) => {
   return sign({
     userId: user.id, 
