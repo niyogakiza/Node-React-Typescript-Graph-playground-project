@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Arg, ObjectType, Field, Ctx } from 'type-graphql'
+import { Resolver, Query, Mutation, Arg, ObjectType, Field, Ctx, UseMiddleware } from 'type-graphql'
 import { hash, compare } from 'bcryptjs'
 import { User } from './entity/User'
 import { MyContext } from './MyContext'
@@ -16,6 +16,12 @@ export class UserResolver {
   Server() {
     return 'hi'
   }
+
+  @Query(() => String)
+  @UseMiddleware()
+    bye(){
+      return "bye!"
+    }
 
   @Query(() => [User])
   users() {
