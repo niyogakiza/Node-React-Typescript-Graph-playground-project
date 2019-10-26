@@ -45,5 +45,23 @@ times(n => console.log(n), 4)
  /**
   * Overloaded function: a function with multiple call signatures
   */
+ function warnUser(warning) {
+   if(warnUser.wasCalled) {return}
+   warnUser.wasCalled = true
+   alert(warning)
+ }
+ warnUser.wasCalled = false
+
+ type WarnUser = {
+   (warning: string): void
+   wasCalled: boolean
+ }
+
+ let warnUser: WarnUser = (warning: string) => {
+   if(warnUser.wasCalled) return
+   warnUser.wasCalled = true
+   alert(warning)
+ }
+ warnUser.wasCalled = false
 
   
