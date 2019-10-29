@@ -144,7 +144,6 @@
     }
 
     let k = call(fill, 10, 'a') 
-    // How does it know number of arguments needed?
     // Expected 3 arguments, but got 2
     let g = call(fill, 10) 
     //Expected 3 arguments, but got 4.
